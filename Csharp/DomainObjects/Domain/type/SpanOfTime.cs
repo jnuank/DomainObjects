@@ -16,6 +16,12 @@ namespace DomainObjects.Domain.type
             Start = start;
             End = end;
         }
+        
+        /// <summary>
+        /// otherと時間帯が重なっているか判定する
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public bool IsOverRap(SpanOfTime other)
         {
             if (this.Equals(other)) return true;
@@ -26,17 +32,21 @@ namespace DomainObjects.Domain.type
 
         public bool Equals(SpanOfTime other)
         {
-            if (other == null) return false;
+            if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
             return this.Start.Equals(other.Start) 
                    && this.End.Equals(other.End);
         }
 
+        /// <summary>
+        /// otherの時間帯を完全に含んでいるか
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public bool IsContains(SpanOfTime other)
         {
             if (this.Equals(other)) return true;
-            return this.Start.CompareTo(other.Start) < 0
-                   && this.End.CompareTo(other.End) > 0;
+            return this.Start < other.Start && other.End < this.End;
         }
     }
 }
