@@ -15,11 +15,11 @@ namespace DomainObjects.Domain.type
             this._終了年月日時分 = 終了年月日時分;
         }
 
-        public 利用時間帯 りようじかんたい()
+        public SpanOfTime りようじかんたい()
         {
-            Time かいしじふん = new Time(_開始年月日時分.Value.Hour, _開始年月日時分.Value.Minute);
-            Time しゅうりょうじふん = new Time(_終了年月日時分.Value.Hour, _終了年月日時分.Value.Minute);
-            return new 利用時間帯(かいしじふん, しゅうりょうじふん);
+            HourAndMinute かいしじふん = new HourAndMinute(_開始年月日時分.Value.Hour, _開始年月日時分.Value.Minute);
+            HourAndMinute しゅうりょうじふん = new HourAndMinute(_終了年月日時分.Value.Hour, _終了年月日時分.Value.Minute);
+            return new SpanOfTime(かいしじふん, しゅうりょうじふん);
         }
     }
 }

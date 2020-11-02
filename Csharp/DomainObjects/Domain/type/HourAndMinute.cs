@@ -2,13 +2,16 @@ using System;
 
 namespace DomainObjects.Domain.type
 {
-    public class Time : IEquatable<Time>, IComparable<Time>
+    /// <summary>
+    /// 時分
+    /// </summary>
+    public class HourAndMinute : IEquatable<HourAndMinute>, IComparable<HourAndMinute>
     {
         private DateTime Value { get; set; }
         public int Hour { get; }
         public int Minute { get;  }
 
-        public Time(int hour, int minute)
+        public HourAndMinute(int hour, int minute)
         {
             if (hour < 0 || hour > 23) throw new ArgumentException($"{nameof(hour)}は0〜23の間にしてください");
             if (minute < 0 || minute > 59) throw new ArgumentException($"{nameof(minute)}は0〜59の間にしてください");
@@ -17,14 +20,14 @@ namespace DomainObjects.Domain.type
             Minute = minute;
         }
 
-        public bool Equals(Time other)
+        public bool Equals(HourAndMinute other)
         {
             if (other == null) return false;
             if (ReferenceEquals(this, other)) return true;
             return this.Hour == other.Hour && this.Minute == other.Minute;
         }
 
-        public int CompareTo(Time other)
+        public int CompareTo(HourAndMinute other)
         {
             if (other == null) return 1;
 
