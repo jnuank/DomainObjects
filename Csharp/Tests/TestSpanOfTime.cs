@@ -23,9 +23,10 @@ namespace Tests
             var end = new HourAndMinute(13, 15);
             
             var span = new SpanOfTime(start, end);
+            HourAndMinute sut = span.Difference();
             
-            Assert.Equal(2, span.Hours());
-            Assert.Equal(30, span.Minutes());
+            Assert.Equal(2, sut.Hour);
+            Assert.Equal(30, sut.Minute);
         }
         
         [Fact]

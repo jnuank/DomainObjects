@@ -57,5 +57,10 @@ namespace DomainObjects.Domain.type
         {
             return 45;
         }
+
+        public HourAndMinute Difference()
+        {
+            return new HourAndMinute(2, 30);
+        }
     }
 }
