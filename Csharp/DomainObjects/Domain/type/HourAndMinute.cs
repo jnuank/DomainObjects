@@ -43,6 +43,20 @@ namespace DomainObjects.Domain.type
                 return hourCompareResult;
             }
         }
+
+        public static bool operator <(HourAndMinute self, HourAndMinute other)
+        {
+            if (self == null || other == null) throw new ArgumentNullException();
+
+            // self < other が trueになるかどうか
+            return self.CompareTo(other) < 0;
+        }
+
+        public static bool operator >(HourAndMinute self, HourAndMinute other)
+        {
+            return other < self;
+        }
+
         //
         // public static bool operator <(時分 self, 時分 other)
         // {

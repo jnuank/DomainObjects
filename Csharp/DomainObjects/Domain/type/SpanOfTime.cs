@@ -12,7 +12,7 @@ namespace DomainObjects.Domain.type
 
         public SpanOfTime(HourAndMinute start, HourAndMinute end)
         {
-            if (end.CompareTo(start) < 0) throw new ArgumentException("endはstartより遅い時間にしてください");
+            if (end < start) throw new ArgumentException("endはstartより遅い時間にしてください");
             Start = start;
             End = end;
         }

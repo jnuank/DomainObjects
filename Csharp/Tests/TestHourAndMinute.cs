@@ -11,7 +11,7 @@ namespace Tests
             var sut = new HourAndMinute(10, 0);
             var other = new HourAndMinute(12, 0);
             
-            Assert.True(sut.CompareTo(other) < 0);
+            Assert.True(sut < other);
         }
         [Fact]
         public void どちらも同じ()
@@ -27,7 +27,7 @@ namespace Tests
             var sut = new HourAndMinute(12, 45);
             var other = new HourAndMinute(12, 0);
             
-            Assert.True(sut.CompareTo(other) > 0);
+            Assert.True(sut > other);
         }
     }
 }
