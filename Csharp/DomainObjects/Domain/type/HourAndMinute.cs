@@ -76,5 +76,19 @@ namespace DomainObjects.Domain.type
         {
             return !(self == other);
         }
+
+        public static HourAndMinute operator -(HourAndMinute self, HourAndMinute other)
+        {
+            var minute = self.Minute - other.Minute;
+            var hour = self.Hour - other.Hour;
+            // 繰り下がり処理
+            if (minute < 0)
+            {
+                hour--;
+                minute += 60;
+            }
+            
+            return new HourAndMinute(hour, minute);
+        }    
     }
 }

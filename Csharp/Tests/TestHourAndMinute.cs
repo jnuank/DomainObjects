@@ -48,5 +48,17 @@ namespace Tests
             Assert.True(sut != other);
             
         }
+
+        [Fact]
+        public void 時分の差を計算する()
+        {
+            var sut = new HourAndMinute(10, 45);
+            var other = new HourAndMinute(13, 15);
+
+            var result = other - sut;
+            
+            Assert.Equal(2, result.Hour);
+            Assert.Equal(30, result.Minute);
+        }
     }
 }
