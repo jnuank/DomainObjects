@@ -1,4 +1,5 @@
 using System;
+using System.Reflection.Metadata.Ecma335;
 
 namespace DomainObjects.Domain.type
 {
@@ -22,14 +23,14 @@ namespace DomainObjects.Domain.type
 
         public bool Equals(HourAndMinute other)
         {
-            if (other == null) return false;
+            if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
             return this.Hour == other.Hour && this.Minute == other.Minute;
         }
 
         public int CompareTo(HourAndMinute other)
         {
-            if (other == null) return 1;
+            if (other is null) return 1;
 
             if (ReferenceEquals(this, other)) return 0;
 
@@ -46,7 +47,7 @@ namespace DomainObjects.Domain.type
 
         public static bool operator <(HourAndMinute self, HourAndMinute other)
         {
-            if (self == null || other == null) throw new ArgumentNullException();
+            if (self is null || other is null) throw new ArgumentNullException();
 
             // self < other が trueになるかどうか
             return self.CompareTo(other) < 0;
@@ -57,10 +58,23 @@ namespace DomainObjects.Domain.type
             return other < self;
         }
 
-        //
-        // public static bool operator <(時分 self, 時分 other)
-        // {
-        //     if (self.CompareTo(other) > 0) return
-        // }
+        public static bool operator ==(HourAndMinute self, HourAndMinute other)
+        {
+            if (self is null)
+            {
+                return other is null;
+            }
+            if (other is null)
+            {
+                return false;
+            }
+
+            return self.Equals(other);
+        }
+
+        public static bool operator !=(HourAndMinute self, HourAndMinute other)
+        {
+            return !(self == other);
+        }
     }
 }

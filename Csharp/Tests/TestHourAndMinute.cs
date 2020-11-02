@@ -19,7 +19,7 @@ namespace Tests
             var sut = new HourAndMinute(12, 0);
             var other = new HourAndMinute(12, 0);
             
-            Assert.True(sut.CompareTo(other) == 0);
+            Assert.True(sut == other);
         }
         [Fact]
         public void 四十五分の方が大きい()
@@ -28,6 +28,25 @@ namespace Tests
             var other = new HourAndMinute(12, 0);
             
             Assert.True(sut > other);
+        }
+        [Fact]
+        public void null比較()
+        {
+           
+            HourAndMinute sut = null;
+            HourAndMinute other = null;
+
+            Assert.True(sut == other);
+        }
+
+        [Fact]
+        public void 時間が一緒ではない()
+        { 
+            var sut = new HourAndMinute(0, 0);
+            var other = new HourAndMinute(23, 59);
+
+            Assert.True(sut != other);
+            
         }
     }
 }
