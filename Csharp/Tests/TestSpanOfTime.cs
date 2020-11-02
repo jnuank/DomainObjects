@@ -17,6 +17,18 @@ namespace Tests
         }
 
         [Fact]
+        public void 何時間か取得できる()
+        {
+            var start = new HourAndMinute(10, 45);
+            var end = new HourAndMinute(13, 15);
+            
+            var span = new SpanOfTime(start, end);
+            
+            Assert.Equal(2, span.Hours());
+            Assert.Equal(30, span.Minutes());
+        }
+        
+        [Fact]
         public void StartがEndより遅い場合はエラーとなる()
         {
             Assert.Throws<ArgumentException>(() =>

@@ -25,8 +25,7 @@ namespace DomainObjects.Domain.type
         public bool IsOverRap(SpanOfTime other)
         {
             if (this.Equals(other)) return true;
-            if (this.End.CompareTo(other.Start) > 0) return true;
-            return false;
+            return End > other.Start;
         }
 
 
@@ -34,8 +33,7 @@ namespace DomainObjects.Domain.type
         {
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
-            return this.Start.Equals(other.Start) 
-                   && this.End.Equals(other.End);
+            return Start == other.Start && End == other.End;
         }
 
         /// <summary>
@@ -46,7 +44,18 @@ namespace DomainObjects.Domain.type
         public bool IsContains(SpanOfTime other)
         {
             if (this.Equals(other)) return true;
-            return this.Start < other.Start && other.End < this.End;
+            return Start < other.Start && other.End < End;
+        }
+
+
+        public int Hours()
+        {
+            return End.Hour - Start.Hour;
+        }
+
+        public int Minutes()
+        {
+            return 45;
         }
     }
 }
