@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DomainObjects.Domain.type;
@@ -15,6 +16,19 @@ namespace Tests
             _testOutputHelper = testOutputHelper;
         }
 
+        [Fact]
+        public void StartがEndより遅い場合はエラーとなる()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var sut = new SpanOfTime(
+                        start: new HourAndMinute(23, 59),
+                        end: new HourAndMinute(9, 0)
+                    );
+                
+            });
+        }
+        
         [Theory]
         [ClassData(typeof(利用時間帯テストデータ))]
         public void 利用時間帯の比較テストNGパターン(HourAndMinute sut_start, HourAndMinute sut_end, HourAndMinute other_start, HourAndMinute other_end)
