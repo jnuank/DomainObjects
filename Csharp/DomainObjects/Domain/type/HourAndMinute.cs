@@ -8,7 +8,6 @@ namespace DomainObjects.Domain.type
     /// </summary>
     public class HourAndMinute : IEquatable<HourAndMinute>, IComparable<HourAndMinute>
     {
-        private DateTime Value { get; set; }
         public int Hour { get; }
         public int Minute { get;  }
 

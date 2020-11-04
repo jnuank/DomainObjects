@@ -47,20 +47,9 @@ namespace DomainObjects.Domain.type
             return Start < other.Start && other.End < End;
         }
 
-
-        public int Hours()
-        {
-            return End.Hour - Start.Hour;
-        }
-
-        public int Minutes()
-        {
-            return 45;
-        }
-
         public HourAndMinute Difference()
         {
-            return new HourAndMinute(2, 30);
+            return End - Start;
         }
     }
 }
