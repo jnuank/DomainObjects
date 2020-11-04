@@ -1,3 +1,4 @@
+using System;
 using DomainObjects.Domain.type;
 using Xunit;
 
@@ -50,7 +51,7 @@ namespace Tests
         }
 
         [Fact]
-        public void 時分の差を計算する()
+        public void 繰り下げのある時分の差を計算する()
         {
             var sut = new HourAndMinute(10, 45);
             var other = new HourAndMinute(13, 15);
@@ -59,6 +60,29 @@ namespace Tests
             
             Assert.Equal(2, result.Hour);
             Assert.Equal(30, result.Minute);
+        }
+        [Fact]
+        public void 時分の差を計算する()
+        {
+            var sut = new HourAndMinute(9, 0);
+            var other = new HourAndMinute(13, 15);
+
+            var result = other - sut;
+            
+            Assert.Equal(4, result.Hour);
+            Assert.Equal(15, result.Minute);
+        }
+
+        [Fact]
+        public void 時分の差を計算してマイナスになる()
+        {
+            var sut = new HourAndMinute(16, 0);
+            var other = new HourAndMinute(13, 15);
+
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var result = other - sut;
+            });
         }
     }
 }

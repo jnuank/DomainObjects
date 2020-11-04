@@ -81,14 +81,22 @@ namespace DomainObjects.Domain.type
         {
             var minute = self.Minute - other.Minute;
             var hour = self.Hour - other.Hour;
-            // 繰り下がり処理
+            // 繰り下げ処理
             if (minute < 0)
             {
                 hour--;
                 minute += 60;
             }
-            
-            return new HourAndMinute(hour, minute);
+
+            try
+            {
+                var hourAndMinute = new HourAndMinute(hour, minute);
+                return hourAndMinute;
+            }
+            catch (ArgumentException error)
+            {
+                throw new ArgumentException("マイナスの時間計算はできません");
+            }
         }    
     }
 }
