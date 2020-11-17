@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Xml.Schema;
 
 namespace DomainObjects.Domain.rule
 {
@@ -12,10 +13,13 @@ namespace DomainObjects.Domain.rule
 
         public ReserveChangeRule()
         {
+            define(ReservationStatus.仮予約, Enum.GetValues() .仮予約, ReservationStatus.キャンセル済み,]);
             map.Add(ReservationStatus.仮予約, new HashSet<ReservationStatus>() {ReservationStatus.予約済み});
             map.Add(ReservationStatus.予約済み, new HashSet<ReservationStatus>() {ReservationStatus.キャンセル済み});
             map.Add(ReservationStatus.キャンセル済み, new HashSet<ReservationStatus>() {});
         }
+        
+        
 
         public bool CanChange(ReservationStatus from, ReservationStatus to)
         {

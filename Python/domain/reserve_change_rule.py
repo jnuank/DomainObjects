@@ -19,5 +19,5 @@ class ReserveChangeRule:
             ReservationStatus.キャンセル済み: {},
         }
 
-    def CanChange(self, _from, _to) -> bool:
+    def can_change(self, _from, _to) -> bool:
         return _to in self.map[_from]
